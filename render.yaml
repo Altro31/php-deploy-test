@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ama-wordpress
+    env: docker
+    repo: https://github.com/tu-usuario/ama.git
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    disk:
+      name: wordpress-content
+      mountPath: /var/www/html/wp-content
+      sizeGB: 1
+    envVars:
+      - key: WORDPRESS_DB_HOST
+        sync: false
+      - key: WORDPRESS_DB_USER
+        sync: false
+      - key: WORDPRESS_DB_PASSWORD
+        sync: false
+      - key: WORDPRESS_DB_NAME
+        sync: false
+      - key: WORDPRESS_TABLE_PREFIX
+        value: wp_
+      - key: WORDPRESS_DEBUG
+        value: "0"
